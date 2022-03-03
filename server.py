@@ -45,7 +45,7 @@ def fortune():
 def weather():
     """Return a weather-info dictionary for this zipcode."""
 
-    zipcode = request.args.get('zipcode')
+    zipcode = request.args.get('zipcode') 
     weather_info = WEATHER.get(zipcode, DEFAULT_WEATHER)
     return jsonify(weather_info)
 
@@ -53,7 +53,7 @@ def weather():
 @app.route('/order-melons.json', methods=['POST'])
 def order_melons():
     """Order melons and return a dictionary of result-code and result-msg."""
-    melon = request.json.get('melon_type')
+    melon = request.json.get('type')
     qty = int(request.json.get('qty'))
 
     if qty > 10:
@@ -64,7 +64,7 @@ def order_melons():
         result_text = f"You have bought {qty} {melon} melons"
     else:
         result_code = 'ERROR'
-        result_text = "You want to buy fewer than 1 melons? Huh?"
+        result_text = "You want to buy fewer than 1 melon? Huh?"
 
     return jsonify({'code': result_code, 'msg': result_text})
 
